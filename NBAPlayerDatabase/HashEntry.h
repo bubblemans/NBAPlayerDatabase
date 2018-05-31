@@ -1,10 +1,6 @@
-//
-//  HashEntry.h
-//  NBAPlayerDatabase
-//
-//  Created by Alvin Lin on 2018/5/31.
-//  Copyright © 2018 Alvin Lin. All rights reserved.
-//
+/** This header file is the implementation of hash table
+    @author Alvin Lin
+    @file HashEntry.h */
 
 #include "Entry.h"
 #ifndef HashEntry_h
