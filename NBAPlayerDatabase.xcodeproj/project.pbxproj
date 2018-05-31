@@ -26,6 +26,8 @@
 		E1BB09D720BBD4C60067F1B0 /* NBAPlayerDatabase */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NBAPlayerDatabase; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1BB09DA20BBD4C60067F1B0 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		E1BB09E120BBD4D60067F1B0 /* NBAPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBAPlayer.h; sourceTree = "<group>"; };
+		E1BB09F820C072F70067F1B0 /* Entry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Entry.h; sourceTree = "<group>"; };
+		E1BB09F920C075E20067F1B0 /* HashEntry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HashEntry.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				E1BB09DA20BBD4C60067F1B0 /* main.cpp */,
+				E1BB09F820C072F70067F1B0 /* Entry.h */,
+				E1BB09F920C075E20067F1B0 /* HashEntry.h */,
 				E1BB09E120BBD4D60067F1B0 /* NBAPlayer.h */,
 			);
 			path = NBAPlayerDatabase;
