@@ -1,36 +1,36 @@
 /** This header file contains the object of entry for hashing
-    @author Alvin Lin
-    @file Entry.h */
+ @author Alvin Lin
+ @file Entry.h */
 
 #ifndef Entry_h
 #define Entry_h
 
 template <class KeyType, class ItemType>
 class Entry {
-    private:
-        KeyType key;
-        ItempType item;
-    public:
+private:
+    KeyType key;
+    ItemType item;
+public:
     
-        // constructor
-        Entry();
-        Entry(KeyType k, ItemType i){key = k; item = i;}
+    // constructor
+    Entry();
+    Entry(KeyType k, ItemType i){key = k; item = i;}
     
-        // setter and getter
-        void setKey(KeyType k){key = k;}
-        void setItem(ItemType i) {item = i;}
-        KeyType getKey(){return key;}
-        ItemType getItem(){return item;}
+    // setter and getter
+    void setKey(KeyType k){key = k;}
+    void setItem(ItemType i) {item = i;}
+    KeyType getKey(){return key;}
+    ItemType getItem(){return item;}
     
-        // overloaded operator
-        bool operator ==(const Entry<KeyType, ItemType>& right);
-        bool operator <(const Entry<KeyType, ItemType>& right);
-        bool operator >(const Entry<KeyType, ItemType>& right);
+    // overloaded operator
+    bool operator ==(const Entry<KeyType, ItemType>& right);
+    bool operator <(const Entry<KeyType, ItemType>& right);
+    bool operator >(const Entry<KeyType, ItemType>& right);
 };
 
 /** This function is to check if the left is equal to right
-    @param Entry that is right
-    @return true if is equal */
+ @param Entry that is right
+ @return true if is equal */
 template <class KeyType, class ItemType>
 bool Entry::operator ==(const Entry<KeyType, ItemType> & right) {
     return item == right.item;
