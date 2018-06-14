@@ -35,12 +35,13 @@ class HashTable {
         bool traverseHash(void visit(ItemType&));
         bool insertEntry(KeyType, ItemType);
         bool removeEntry(KeyType);
-        bool searchEntry(KeyType);
+        bool searchEntry(KeyType, ItemType&);
         bool destroyHash();
         bool isEmpty();
         int getCount(){return entryCount;}
         int getLoadFactor();
         void reHash();
+        void update(KeyType, ItemType);
 };
 
 //////////////////private//////////////////////
@@ -177,7 +178,7 @@ bool HashTable<KeyType, ItemType>::removeEntry(KeyType targetKey) {
     @param searchKey that is the key we are looking for
     @return true if found */
 template <class KeyType, class ItemType>
-bool HashTable<KeyType, ItemType>::searchEntry(KeyType searchKey) {
+bool HashTable<KeyType, ItemType>::searchEntry(KeyType searchKey, ItemType &returnedItem) {
     
     // call the hash funciton and locate the index
     int index = hash(searchKey);
@@ -194,6 +195,7 @@ bool HashTable<KeyType, ItemType>::searchEntry(KeyType searchKey) {
         
         // check if found
         if (pCur->getKey() == searchKey) {
+            returnedItem = pCur->getItem();
             return true;
         }
         pCur = pCur->getNext();
@@ -259,8 +261,31 @@ void HashTable<KeyType, ItemType>::reHash() {
     // delete the old hashtable and reaasign the new one
     delete hashTable;
     this->hashTable = newhashTable;
-    
 }
+
+/** This function is to update some info of the object
+    @param key that is te search key
+    @param item that is the updated item */
+template <class KeyType, class ItemType>
+void HashTable<KeyType, ItemType>::update(KeyType key, ItemType item) {
+
+    // call the hash funciton and locate the index
+    int index = hash(key);
+    
+    HashEntry<KeyType,ItemType> *pCur = hashTable[index];
+    
+    // traverse the list
+    while (pCur != NULL) {
+        
+        // check if found
+        if (pCur->getKey() == key) {
+            pCur->setItem(item);
+            return ;
+        }
+        pCur = pCur->getNext();
+    }
+}
+
 #endif /* HashTable_h */
 
 

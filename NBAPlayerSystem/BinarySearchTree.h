@@ -65,6 +65,9 @@ public:
     // find largest node value
     void findLargest(ItemType &returnedItem);
     
+    void updateUniqueKeyTree(ItemType targetItem, ItemType newItem);
+    void updateSecondaryKeyTree(ItemType targetItem, ItemType newItem);
+    
 };
 
 ///////////////////////// DEFINITIONS ///////////////////////////
@@ -397,6 +400,30 @@ BinaryNode<ItemType>* BinarySearchTree<ItemType>::_findLargest(BinaryNode<ItemTy
         return nodePtr;
     // Recursively call function again with right child pointer.
     return _findLargest(nodePtr->getRightPtr());
+}
+
+/** This function is to update info in the item
+    @param targetItem that is needed to be updated
+    @param newItem that is the new info*/
+template <class ItemType>
+void BinarySearchTree<ItemType>::updateUniqueKeyTree(ItemType targetItem, ItemType newItem){
+    
+    BinaryNode<ItemType> *pCur = this->rootPtr;
+    pCur = _uniqueKeyTreeSearch(pCur, targetItem);
+    
+    pCur->setItem(newItem);
+}
+
+/** This function is to update info in the item
+ @param targetItem that is needed to be updated
+ @param newItem that is the new info*/
+template <class ItemType>
+void BinarySearchTree<ItemType>::updateSecondaryKeyTree(ItemType targetItem, ItemType newItem){
+    
+    BinaryNode<ItemType> *pCur = this->rootPtr;
+    pCur = _secondaryKeyTreeSearch(pCur, targetItem);
+    
+    pCur->setItem(newItem);
 }
 
 #endif

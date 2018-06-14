@@ -58,7 +58,7 @@ void depthFirstTraversalsIterative(BinarySearchTree<NBAPlayer> *,  BinarySearchT
 
 void breadthFirstTraversal(BinarySearchTree<NBAPlayer> *,  BinarySearchTree<NBAPlayer> *);
 
-void deleteANode(BinarySearchTree<NBAPlayer> *, BinarySearchTree<NBAPlayer> *, BinarySearchTree<NBAPlayer> *,BinarySearchTree<NBAPlayer> *, BinarySearchTree<NBAPlayer> *, BinarySearchTree<NBAPlayer> *, BinarySearchTree<NBAPlayer> *);
+void deleteANode(BinarySearchTree<NBAPlayer> *, BinarySearchTree<NBAPlayer> *, BinarySearchTree<NBAPlayer> *,BinarySearchTree<NBAPlayer> *, BinarySearchTree<NBAPlayer> *, BinarySearchTree<NBAPlayer> *, BinarySearchTree<NBAPlayer> *, HashTable<string, NBAPlayer> *);
 
 void printIndented(BinarySearchTree<NBAPlayer> *nameTree,  BinarySearchTree<NBAPlayer> *PTSTree);
 
@@ -71,6 +71,10 @@ void searchPTSTree(BinarySearchTree<NBAPlayer> *PTSTree);                       
 void findTheSmallest(BinarySearchTree<NBAPlayer> *);                                                      // Find smallest node in tree.
 
 void findTheLargest(BinarySearchTree<NBAPlayer> *);                                                      // Find largest node in tree.
+
+void updatePlayer(BinarySearchTree<NBAPlayer> *, BinarySearchTree<NBAPlayer> *, BinarySearchTree<NBAPlayer> *,BinarySearchTree<NBAPlayer> *, BinarySearchTree<NBAPlayer> *, BinarySearchTree<NBAPlayer> *, BinarySearchTree<NBAPlayer> *, HashTable<string, NBAPlayer> *);
+
+void insertPlayer(BinarySearchTree<NBAPlayer> *, BinarySearchTree<NBAPlayer> *, BinarySearchTree<NBAPlayer> *,BinarySearchTree<NBAPlayer> *, BinarySearchTree<NBAPlayer> *, BinarySearchTree<NBAPlayer> *, BinarySearchTree<NBAPlayer> *, HashTable<string, NBAPlayer> *);
 
 int main()
 {
@@ -121,7 +125,7 @@ int main()
 
     return 0;         // End the program.
 }
-void menuDriver(char userInputChar, BinarySearchTree<NBAPlayer> *nameTree, BinarySearchTree<NBAPlayer> *teamTree, BinarySearchTree<NBAPlayer> *positionTree, BinarySearchTree<NBAPlayer> *FGPTree, BinarySearchTree<NBAPlayer> *FTPTree, BinarySearchTree<NBAPlayer> *TPPTree, BinarySearchTree<NBAPlayer> *PTSTree)
+void menuDriver(char userInputChar, BinarySearchTree<NBAPlayer> *nameTree, BinarySearchTree<NBAPlayer> *teamTree, BinarySearchTree<NBAPlayer> *positionTree, BinarySearchTree<NBAPlayer> *FGPTree, BinarySearchTree<NBAPlayer> *FTPTree, BinarySearchTree<NBAPlayer> *TPPTree, BinarySearchTree<NBAPlayer> *PTSTree, HashTable<string, NBAPlayer> *hashTable)
 {
     // Driver of program, call manager functions depending on user choice.
     switch (userInputChar)
@@ -154,8 +158,16 @@ void menuDriver(char userInputChar, BinarySearchTree<NBAPlayer> *nameTree, Binar
             cout << "\n\nCurrent inOrder FTP Tree: " ; FTPTree->inOrder(displayFTP);
             cout << "\n\nCurrent inOrder TPP Tree: " ; TPPTree->inOrder(displayTPP);
             cout << "\n\nCurrent inOrder PTS Tree: " ; PTSTree->inOrder(displayPTS);
-            deleteANode(nameTree, teamTree, positionTree, FGPTree, FTPTree, TPPTree, PTSTree);
+            deleteANode(nameTree, teamTree, positionTree, FGPTree, FTPTree, TPPTree, PTSTree, hashTable);
                 break;
+        case 'N':
+            cout << "Insert a new player: \n\n\n";
+            insertPlayer(nameTree, teamTree, positionTree, FGPTree, FTPTree, TPPTree, PTSTree, hashTable);
+            break;
+        case 'U':
+            cout << "Update info of players: \n\n\n";
+            updatePlayer(nameTree, teamTree, positionTree, FGPTree, FTPTree, TPPTree, PTSTree, hashTable);
+            break;
         case 'M':
             cout << "Smallest NBAPlayer Node in tree:\n\n\n";
             findTheSmallest(nameTree);
@@ -191,9 +203,11 @@ void displayMenu()
          << " R - RECURSIVE Depth-First Traversal of tree: Inorder, Preorder, Postorder.\n"
          << " I - ITERATIVE Depth-First Traversal of tree: Inorder, Preorder, Postorder.\n"
          << " B - Breadth-First Traversal of tree by tree level.\n"
-         << " S - Search for an item in the ID tree   (input: item ID).\n"
-         << " P - Search for an item in the NAME tree (input: item NAME).\n"
-         << " D - Delete an item in the tree (by item ID).\n"
+         << " S - Search for an item in the NAME tree   (input: item Name).\n"
+         << " P - Search for an item in the PTS tree (input: item PTS).\n"
+         << " D - Delete an item (by item Name).\n"
+         << " N - Insert an item.\n"
+         << " U - Update an item.\n"
          << " M - Find the smallest item in tree.\n"
          << " X - Find the largest item in tree.\n"
          << " T - Print the tree as an indented list.\n"
@@ -437,7 +451,7 @@ void searchPTSTree(BinarySearchTree<NBAPlayer>* PTSTree)
 
 // CASE D: Function to delete a user-inputted node in the tree.
 
-void deleteANode(BinarySearchTree<NBAPlayer> *nameTree, BinarySearchTree<NBAPlayer> *teamTree, BinarySearchTree<NBAPlayer> *positionTree,BinarySearchTree<NBAPlayer> *FGPTree,BinarySearchTree<NBAPlayer> *FTPTree,BinarySearchTree<NBAPlayer> *TPPTree,BinarySearchTree<NBAPlayer> *PTSTree)
+void deleteANode(BinarySearchTree<NBAPlayer> *nameTree, BinarySearchTree<NBAPlayer> *teamTree, BinarySearchTree<NBAPlayer> *positionTree,BinarySearchTree<NBAPlayer> *FGPTree,BinarySearchTree<NBAPlayer> *FTPTree,BinarySearchTree<NBAPlayer> *TPPTree,BinarySearchTree<NBAPlayer> *PTSTree, HashTable<string, NBAPlayer> *hashTable)
 {
     NBAPlayer *targetIDObject = new NBAPlayer; // Dynamically allocate Toy object to
                                    // store Toy ID(Unique Key) entered by user.
@@ -460,6 +474,8 @@ void deleteANode(BinarySearchTree<NBAPlayer> *nameTree, BinarySearchTree<NBAPlay
         FTPTree->deleteOtherKeys(*targetIDObject);
         TPPTree->deleteOtherKeys(*targetIDObject);
         PTSTree->deleteOtherKeys(*targetIDObject);
+        hashTable->removeEntry(targetIDObject->getName());
+        
     }
 /*
     if (nameTree->deleteUniqueKey(*targetIDObject))                            // If search was successful, display found item data.
@@ -495,6 +511,184 @@ void deleteANode(BinarySearchTree<NBAPlayer> *nameTree, BinarySearchTree<NBAPlay
     // Delete dynamically allocated objects.
     delete targetIDObject;
 }
+
+//-----------------------------------------------------------------------------------------
+
+// CASE N: Function to insert a new player.
+void insertPlayer(BinarySearchTree<NBAPlayer> *nameTree, BinarySearchTree<NBAPlayer> *teamTree, BinarySearchTree<NBAPlayer> *positionTree,BinarySearchTree<NBAPlayer> *FGPTree,BinarySearchTree<NBAPlayer> *FTPTree,BinarySearchTree<NBAPlayer> *TPPTree,BinarySearchTree<NBAPlayer> *PTSTree, HashTable<string, NBAPlayer> *hashTable) {
+    
+    string name;
+    string team;
+    string position;
+    string FGP;
+    string FTP;
+    string TPP;
+    string PTS;
+    
+    string option;
+    
+    do {
+        // ask users to input new player info
+        cout << "Please enter the name: ";
+        getline(cin, name);
+        cout << "Please enter the team: ";
+        getline(cin, team);
+        cout << "Please enter the position: ";
+        getline(cin, position);
+        cout << "Please enter the FGP: ";
+        getline(cin, FGP);
+        cout << "Please enter the FTP: ";
+        getline(cin, FTP);
+        cout << "Please enter the TPP: ";
+        getline(cin, TPP);
+        cout << "Please enter the PTS: ";
+        getline(cin, PTS);
+        
+        // create a new player
+        NBAPlayer *player = new NBAPlayer;
+        player->setName(name);
+        player->setTeam(team);
+        player->setPosition(position);
+        player->setFGP(FGP);
+        player->setFTP(FTP);
+        player->setTPP(TPP);
+        player->setPTS(PTS);
+        
+        // insert it to database
+        nameTree->uniqueKeyTreeInsert(*player);
+        teamTree->secondaryKeyTreeInsert(*player);
+        positionTree->secondaryKeyTreeInsert(*player);
+        FGPTree->secondaryKeyTreeInsert(*player);
+        FTPTree->secondaryKeyTreeInsert(*player);
+        TPPTree->secondaryKeyTreeInsert(*player);
+        PTSTree->secondaryKeyTreeInsert(*player);
+        
+        delete player;
+        
+        cout << "Do you want to insert more? ";
+        getline(cin, option);
+    } while (option == "Y" || option == "y");
+}
+
+//-----------------------------------------------------------------------------------------
+
+// CASE U: Function to update some info in the database.
+void updatePlayer(BinarySearchTree<NBAPlayer> *nameTree, BinarySearchTree<NBAPlayer> *teamTree, BinarySearchTree<NBAPlayer> *positionTree,BinarySearchTree<NBAPlayer> *FGPTree,BinarySearchTree<NBAPlayer> *FTPTree,BinarySearchTree<NBAPlayer> *TPPTree,BinarySearchTree<NBAPlayer> *PTSTree, HashTable<string, NBAPlayer> *hashTable) {
+    
+    string option;
+    do {
+        
+        string name;
+        NBAPlayer *player = new NBAPlayer;
+        cout << "Please enter the player's name that you want to update: ";
+        getline(cin, name);
+        
+        // check if we have target in hash table
+        if (hashTable->searchEntry(name, *player)) {
+            string team;
+            string position;
+            string FGP;
+            string FTP;
+            string TPP;
+            string PTS;
+            string updateoption;
+            
+            do {
+                cout << "Which field you would like to update? \n";
+                cout << "N - name\n";
+                cout << "T - team\n";
+                cout << "P - position\n";
+                cout << "FGP - field goal percentage\n";
+                cout << "FTP - free throw percentage\n";
+                cout << "TPP - three point percentage\n";
+                cout << "PTS - total points\n";
+                cout << "D - done\n";
+                getline(cin, updateoption);
+                
+                if (updateoption == "N") {
+                    cout << "Please enter the new name: ";
+                    getline(cin, name);
+                    NBAPlayer *newPlayer = new NBAPlayer;
+                    *newPlayer = *player;
+                    newPlayer->setName(name);
+                    nameTree->updateUniqueKeyTree(*player, *newPlayer);
+                    PTSTree->updateSecondaryKeyTree(*player, *newPlayer);
+                    hashTable->update(name, *newPlayer);
+                }
+                else if (updateoption == "T") {
+                    cout << "Please enter the new team: ";
+                    getline(cin, team);
+                    NBAPlayer *newPlayer = new NBAPlayer;
+                    *newPlayer = *player;
+                    newPlayer->setTeam(team);
+                    nameTree->updateUniqueKeyTree(*player, *newPlayer);
+                    PTSTree->updateSecondaryKeyTree(*player, *newPlayer);
+                    hashTable->update(name, *newPlayer);
+                }
+                else if (updateoption == "P") {
+                    cout << "Please enter the new position: ";
+                    getline(cin, position);
+                    NBAPlayer *newPlayer = new NBAPlayer;
+                    *newPlayer = *player;
+                    newPlayer->setPosition(position);
+                    nameTree->updateUniqueKeyTree(*player, *newPlayer);
+                    PTSTree->updateSecondaryKeyTree(*player, *newPlayer);
+                    hashTable->update(name, *newPlayer);
+                }
+                else if (updateoption == "FGP") {
+                    cout << "Please enter the new position: ";
+                    getline(cin, FGP);
+                    NBAPlayer *newPlayer = new NBAPlayer;
+                    *newPlayer = *player;
+                    newPlayer->setFGP(FGP);
+                    nameTree->updateUniqueKeyTree(*player, *newPlayer);
+                    PTSTree->updateSecondaryKeyTree(*player, *newPlayer);
+                    hashTable->update(name, *newPlayer);
+                }
+                else if (updateoption == "FTP") {
+                    cout << "Please enter the new position: ";
+                    getline(cin, FTP);
+                    NBAPlayer *newPlayer = new NBAPlayer;
+                    *newPlayer = *player;
+                    newPlayer->setFTP(FTP);
+                    nameTree->updateUniqueKeyTree(*player, *newPlayer);
+                    PTSTree->updateSecondaryKeyTree(*player, *newPlayer);
+                    hashTable->update(name, *newPlayer);
+                }
+                else if (updateoption == "TPP") {
+                    cout << "Please enter the new position: ";
+                    getline(cin, TPP);
+                    NBAPlayer *newPlayer = new NBAPlayer;
+                    *newPlayer = *player;
+                    newPlayer->setTPP(TPP);
+                    nameTree->updateUniqueKeyTree(*player, *newPlayer);
+                    PTSTree->updateSecondaryKeyTree(*player, *newPlayer);
+                    hashTable->update(name, *newPlayer);
+                }
+                else if (updateoption == "PTS") {
+                    cout << "Please enter the new position: ";
+                    getline(cin, PTS);
+                    NBAPlayer *newPlayer = new NBAPlayer;
+                    *newPlayer = *player;
+                    newPlayer->setPTS(PTS);
+                    nameTree->updateUniqueKeyTree(*player, *newPlayer);
+                    PTSTree->updateSecondaryKeyTree(*player, *newPlayer);
+                    hashTable->update(name, *newPlayer);
+                }
+            } while (updateoption != "D");
+            
+        }
+        
+        // not in the hash table
+        else {
+            cout << "Sorry, " << name << " can't be found.\n";
+        }
+        
+        cout << "Do you want to update more? ";
+        getline(cin, option);
+    } while (option == "Y" || option == "y");
+}
+
 //-----------------------------------------------------------------------------------------
 
 // CASE M: Function to find the smallest item in the tree and display its data.

@@ -22,11 +22,6 @@ class Entry {
         void setItem(ItemType i) {item = i;}
         KeyType getKey(){return key;}
         ItemType getItem(){return item;}
-    
-        // overloaded operator
-        bool operator ==(const Entry<KeyType, ItemType>& right);
-        bool operator <(const Entry<KeyType, ItemType>& right);
-        bool operator >(const Entry<KeyType, ItemType>& right);
 };
 #endif /* Entry_h */
 

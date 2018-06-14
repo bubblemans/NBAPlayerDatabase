@@ -69,8 +69,8 @@
 			children = (
 				E1A6C16020D1C4440059EF79 /* main 2.cpp */,
 				E1A6C15E20D1C4440059EF79 /* BinaryNode.h */,
-				E1A6C16120D1C4450059EF79 /* BinarySearchTree.h */,
 				E1A6C15F20D1C4440059EF79 /* BinaryTree.h */,
+				E1A6C16120D1C4450059EF79 /* BinarySearchTree.h */,
 				E1A6C15D20D1C4440059EF79 /* Compare.h */,
 				E1A6C16320D1C4450059EF79 /* Queue.h */,
 				E1A6C16220D1C4450059EF79 /* Stack.h */,
