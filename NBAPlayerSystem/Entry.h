@@ -1,4 +1,3 @@
-
 /** This header file contains the object of entry for hashing
     @author Alvin Lin
     @file Entry.h */

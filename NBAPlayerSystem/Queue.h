@@ -1,8 +1,8 @@
-/**~*~*
-   Queue template
-   Modified by: Amit Yativ
-   IDE: Code::Blocks
-*~**/
+/***********************************************
+ Used By: Team 5 - 22C
+ 
+ Queue Abstract Header File
+ ************************************************/
 #ifndef DYNAMICQUEUE_H
 #define DYNAMICQUEUE_H
 

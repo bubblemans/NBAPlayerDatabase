@@ -1,8 +1,8 @@
-/**~*~*
-   Stack template
-   Modified by: Amit Yativ
-   IDE: Code::Blocks
-*~**/
+/***********************************************
+ Used By: Team 5 - 22C
+ 
+ Stack Abstract Header File
+ ************************************************/
 #ifndef DYNAMICSTACK_H
 #define DYNAMICSTACK_H
 #include <iostream>

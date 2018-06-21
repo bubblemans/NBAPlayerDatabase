@@ -30,6 +30,8 @@
 		E1A6C16120D1C4450059EF79 /* BinarySearchTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BinarySearchTree.h; sourceTree = "<group>"; };
 		E1A6C16220D1C4450059EF79 /* Stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stack.h; sourceTree = "<group>"; };
 		E1A6C16320D1C4450059EF79 /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
+		E1A6C17D20D614820059EF79 /* List.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = List.h; sourceTree = "<group>"; };
+		E1A6C17E20D614820059EF79 /* ListNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListNode.h; sourceTree = "<group>"; };
 		E1BB0A0C20C34CD00067F1B0 /* NBAPlayerSystem */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NBAPlayerSystem; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1BB0A1620C34CEF0067F1B0 /* NBAPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBAPlayer.h; sourceTree = "<group>"; };
 		E1BB0A1720C34D400067F1B0 /* HashTable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HashTable.h; sourceTree = "<group>"; };
@@ -74,6 +76,8 @@
 				E1A6C15D20D1C4440059EF79 /* Compare.h */,
 				E1A6C16320D1C4450059EF79 /* Queue.h */,
 				E1A6C16220D1C4450059EF79 /* Stack.h */,
+				E1A6C17D20D614820059EF79 /* List.h */,
+				E1A6C17E20D614820059EF79 /* ListNode.h */,
 				E1BB0A1820C34D600067F1B0 /* Entry.h */,
 				E1BB0A1920C34D7B0067F1B0 /* HashEntry.h */,
 				E1BB0A1720C34D400067F1B0 /* HashTable.h */,
