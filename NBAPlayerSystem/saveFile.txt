@@ -14,7 +14,6 @@ John Chaney TOT F-C 0.289 0.687667 0 46
 Joe Dolhon BLB G 0.308 0.7365 0 247
 Bob Brown DNN F 0.361 0.683 0 724
 Dillard Crocker DNN PF 0.349 0.7174 0 327
-Alvin Lin WSC C 1 1 1 15000
 Jim Browne DNN C 0.354 0.481 0 47
 Buddy Jeannette* BLB G 0.284 0.82 0 193
 Bob Brannum SHE PF 0.346 0.6492 0 491
@@ -63,6 +62,7 @@ Paul Cloyd TOT G-F 0.242333 0.675 0 12
 Bruce Hale INO G-F 0.3245 0.6955 0 375
 Joe Bradley CHS G 0.269 0.395 0 87
 Jack Coleman ROC PF 0.414273 0.699545 0 698
+Jack Cotton DNN F-C 0.292 0.509 0 276
 Jake Bornheimer PHW F-C 0.289 0.667 0 254
 Vern Gardner PHW SG 0.35 0.71 0 446
 Frank Gates AND G 0.281 0.622 0 287
